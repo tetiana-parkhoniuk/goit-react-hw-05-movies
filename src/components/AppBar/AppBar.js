@@ -1,10 +1,10 @@
-// import Navigation from '../Navigation/Navigation';
-// import styles from './Appbar.module.css';
+import Navigation from 'components/Navigation';
+import styles from './AppBar.module.css';
 
-// export default function Appbar() {
-//   return (
-//     <header className={styles.header}>
-//       <Navigation />
-//     </header>
-//   );
-// }
+export default function AppBar() {
+  return (
+    <header className={styles.header}>
+      <Navigation />
+    </header>
+  );
+}

@@ -1,9 +1,24 @@
+import { Route } from 'react-router-dom';
+import AppBar from 'components/AppBar';
+import Container from 'components/Container';
+
 import './App.css';
 
-function App() {
+export default function App() {
   return (
-    <div>test</div>
+    <Container>
+      <AppBar />
+      
+      <Route path="/">
+
+      </Route>
+
+      <Route path="/movies">
+
+      </Route>
+
+    </Container>
+
   );
 }
 
-export default App;

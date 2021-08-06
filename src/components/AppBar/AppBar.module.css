@@ -1,8 +1,9 @@
-/* .header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 80px;
+  width: 100vw;
   margin-bottom: 16px;
-  border-bottom: 1px solid #2a363b;
-} */
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.5);
+}
