@@ -1,20 +1,18 @@
-// import PropTypes from 'prop-types';
-// import ImageGalleryItem from '../ImageGalleryItem';
+import PropTypes from 'prop-types';
 import styles from './MoviesList.module.css';
 
 export default function MoviesList({ movies }) {
   return (
-      <ul className={styles.moviesList}>
+    <ul className={styles.moviesList}>
           {movies.map(movie => (
-              <li key={movie.id}>
-                  {movie.title}
-              </li>
+            <li className={styles.moviesListItem} key={movie.id}>
+              {movie.title}
+            </li>
           ))}
     </ul>
   );
 }
 
-// ImageGallery.propTypes = {
-//   images: PropTypes.array.isRequired,
-//   onSelect: PropTypes.func.isRequired,
-// };
+MoviesList.propTypes = {
+  movies: PropTypes.array.isRequired,
+};

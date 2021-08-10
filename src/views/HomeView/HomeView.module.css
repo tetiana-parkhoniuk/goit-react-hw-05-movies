@@ -1,0 +1,13 @@
+.title {
+  padding-left: 20px;
+  font-size: 20px;
+  color: #2a363b;
+}
+
+.trendingMoviesList {
+  padding-right: 20px;
+}
+
+.trendingMoviesListItem {
+  padding-bottom: 10px;
+}

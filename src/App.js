@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
 import AppBar from 'components/AppBar';
 import Container from 'components/Container';
-import HomeView from 'views/HomeView';
+import HomeView from 'views/HomeView/HomeView';
 import MoviesView from 'views/MoviesView';
 
 import './App.css';

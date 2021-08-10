@@ -1,0 +1,34 @@
+.searchForm {
+  padding-left: 20px;
+}
+
+.searchFormInput {
+  width: 300px;
+  font: inherit;
+  font-size: 16px;
+  border: 1px solid #2a363b;
+  border-radius: 5px;
+  outline: none;
+  padding: 4px;
+  margin-right: 10px;
+}
+
+.searchFormInput:hover,
+.searchFormInput:focus {
+  border: 1px solid #bf2458;
+}
+
+.searchFormBtn {
+  max-width: 70px;
+  color: #fff;
+  background-color: #bf2458;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+
+  cursor: pointer;
+}
+
+.searchFormBtn:hover {
+  background-color: #2a363b;
+}

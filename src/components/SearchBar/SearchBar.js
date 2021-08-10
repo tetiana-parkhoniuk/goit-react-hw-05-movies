@@ -10,10 +10,6 @@ export default function Searchbar({ onSubmit }) {
   return (
     <header className={styles.searchbar}>
       <form className={styles.searchForm} onSubmit={handleSearch}>
-        <button type="submit" className={styles.searchFormBtn}>
-          <span className={styles.searchFormBtnLabel}>Search</span>
-        </button>
-
         <input
           className={styles.searchFormInput}
           name="searchQuery"
@@ -22,6 +18,11 @@ export default function Searchbar({ onSubmit }) {
           autoFocus
           placeholder="Search movies"
         />
+
+        <button type="submit" className={styles.searchFormBtn}>
+          Search
+        </button>
+
       </form>
     </header>
   );
