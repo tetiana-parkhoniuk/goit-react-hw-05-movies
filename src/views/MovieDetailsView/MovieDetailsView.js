@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useRouteMatch } from 'react-router';
+import { NavLink, Route } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/moviesApi';
+import Cast from 'components/Cast';
+import Reviews from 'components/Reviews';
 import styles from './MovieDetailsView.module.css';
 
 export default function MovieDetailsView() {
+    const { url, path } = useRouteMatch();
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
 
@@ -24,16 +28,27 @@ export default function MovieDetailsView() {
                     <p className={styles.movieText}>{ movie.genres.map(genre => genre.name).join(', ')}</p>
                 </div>
             </div>}
-            <hr></hr>
+            <hr />
             <div className={styles.additionalInfo}>
                 <h3>Additional information</h3>
                 <ul>
-                    <li className={styles.additionalLink}>Cast</li>
-                    <li className={styles.additionalLink}>Reviews</li>
+                    <li className={styles.additionalLink}>
+                        <NavLink to={`${url}/cast`}>Cast</NavLink>
+                    </li>
+                    <li className={styles.additionalLink}>
+                        <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+                    </li>
                 </ul>
             </div>
+            <hr />
 
-            <hr></hr>
+            <Route path={`${path}/cast`}>
+                <Cast movieId={movieId} />
+            </Route>
+
+            <Route path={`${path}/reviews`}>
+                <Reviews movieId={movieId} />
+            </Route>
         </>
     )
 }

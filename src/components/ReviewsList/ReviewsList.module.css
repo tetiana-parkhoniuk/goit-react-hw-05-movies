@@ -1,0 +1,25 @@
+.reviewsList {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  padding-left: 40px;
+}
+
+.reviewsItem {
+  padding-bottom: 10px;
+  font: inherit;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.reviewsAuthor {
+  font-style: normal;
+  font-weight: 500;
+  color: #bf2458;
+}
+
+.noReviewsText {
+  padding-left: 20px;
+  color: #2a363b;
+  font-size: 14px;
+}
