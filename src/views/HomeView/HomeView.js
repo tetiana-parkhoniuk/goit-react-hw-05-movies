@@ -9,6 +9,8 @@ export default function HomeView() {
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [reqStatus, setReqStatus] = useState('idle');
 
+    console.log(url);
+
     useEffect(() => {
         async function getTrendingMovies() {
             try {
@@ -36,7 +38,7 @@ export default function HomeView() {
                         <li className={styles.trendingMoviesListItem} key={movie.id}>
                             <Link
                                 className={styles.movieLink}
-                                to={`${url}/${movie.id}`}
+                                to={`/movies/${movie.id}`}
                             >{movie.title}</Link>
                         </li>
                     ))}
