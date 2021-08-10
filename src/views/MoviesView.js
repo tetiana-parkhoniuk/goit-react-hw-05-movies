@@ -1,5 +1,5 @@
-import toast, { Toaster } from 'react-hot-toast';
 import React, { useState, useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { fetchMovies } from 'services/moviesApi';
 import Searchbar from "components/SearchBar/SearchBar";
 import MoviesList from 'components/MoviesList';
