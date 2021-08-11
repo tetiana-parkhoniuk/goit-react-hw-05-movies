@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import styles from './MoviesList.module.css';
 
 export default function MoviesList({ movies }) {
   const { url } = useRouteMatch();
+  const location = useLocation();
+  console.log(location);
   
   return (
     <ul className={styles.moviesList}>
@@ -11,7 +13,10 @@ export default function MoviesList({ movies }) {
             <li className={styles.moviesListItem} key={movie.id}>
               <Link
                 className={styles.movieLink}
-                to={`${url}/${movie.id}`}
+                to={{
+                  pathname: `${url}/${movie.id}`,
+                  state: {from: location},
+                }}
                 >{movie.title}</Link>
             </li>
           ))}

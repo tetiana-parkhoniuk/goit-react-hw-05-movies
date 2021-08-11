@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { useParams, useRouteMatch } from 'react-router';
+import { useParams, useRouteMatch, useLocation, useHistory } from 'react-router';
 import { NavLink, Route } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/moviesApi';
 import styles from './MovieDetailsView.module.css';
@@ -11,16 +11,27 @@ const Reviews = lazy(() => import('components/Reviews/Reviews' /* webpackChunkNa
 );
 
 export default function MovieDetailsView() {
+    const history = useHistory();
+    const location = useLocation();
+    console.log('moviesdetails location', location);
     const { url, path } = useRouteMatch();
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie);
-  }, [movieId]);
+    }, [movieId]);
+    
+    const onGoBack = () => {
+        history.push(location?.state?.from ?? '/');
+    }
+
+    const fromLocationState = location.state.from;
+    console.log(fromLocationState);
 
     return (
         <>
+            <button type="button" onClick={onGoBack}>&#8592; Go Back</button>
             {movie && <div className={styles.movieContainer}>
                 <img className={styles.movieImg} src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt={movie.title} />
                 <div className={styles.movieInfo}>
@@ -37,7 +48,10 @@ export default function MovieDetailsView() {
                 <h3>Additional information</h3>
                 <ul>
                     <li className={styles.additionalLink}>
-                        <NavLink to={`${url}/cast`}>Cast</NavLink>
+                        <NavLink to={{
+                            pathname: `${url}/cast`,
+                            state: { fromLocationState },
+                        }}>Cast</NavLink>
                     </li>
                     <li className={styles.additionalLink}>
                         <NavLink to={`${url}/reviews`}>Reviews</NavLink>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { fetchTrendingMovies } from 'services/moviesApi';
 import styles from './HomeView.module.css';
 
 export default function HomeView() {
+    const location = useLocation();
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [reqStatus, setReqStatus] = useState('idle');
 
@@ -35,7 +36,10 @@ export default function HomeView() {
                         <li className={styles.trendingMoviesListItem} key={movie.id}>
                             <Link
                                 className={styles.movieLink}
-                                to={`/movies/${movie.id}`}
+                                to={{
+                                    pathname: `/movies/${movie.id}`,
+                                    state: {from: location},
+                                }}
                             >{movie.title}</Link>
                         </li>
                     ))}
