@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useParams, useRouteMatch } from 'react-router';
 import { NavLink, Route } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/moviesApi';
-import Cast from 'components/Cast';
-import Reviews from 'components/Reviews';
 import styles from './MovieDetailsView.module.css';
+
+const Cast = lazy(() =>
+  import('../../components/Cast/Cast.js' /* webpackChunkName: "cast-subview" */),
+);
+const Reviews = lazy(() =>
+  import('../../components/Reviews/Reviews.js' /* webpackChunkName: "reviews-subview" */),
+);
 
 export default function MovieDetailsView() {
     const { url, path } = useRouteMatch();
@@ -25,7 +30,7 @@ export default function MovieDetailsView() {
                     <h3 className={styles.movieOverviewTitle}>Overview</h3>
                     <p className={styles.movieText}>{movie.overview}</p>
                     <h3 className={styles.movieGenresTitle}>Genres</h3>
-                    <p className={styles.movieText}>{ movie.genres.map(genre => genre.name).join(', ')}</p>
+                    <p className={styles.movieText}>{movie.genres.map(genre => genre.name).join(', ')}</p>
                 </div>
             </div>}
             <hr />
@@ -42,13 +47,15 @@ export default function MovieDetailsView() {
             </div>
             <hr />
 
-            <Route path={`${path}/cast`}>
-                <Cast movieId={movieId} />
-            </Route>
+            <Suspense fallback={<h1>Loading...</h1>}>
+                <Route path={`${path}cast`}>
+                    <Cast movieId={movieId} />
+                </Route>
 
-            <Route path={`${path}/reviews`}>
-                <Reviews movieId={movieId} />
-            </Route>
+                <Route path={`${path}/reviews`}>
+                    <Reviews movieId={movieId} />
+                </Route>
+            </Suspense>
         </>
-    )
+    );
 }
