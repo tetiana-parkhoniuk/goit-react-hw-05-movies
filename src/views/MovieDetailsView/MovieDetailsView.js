@@ -2,6 +2,7 @@ import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { useParams, useRouteMatch, useLocation, useHistory } from 'react-router';
 import { NavLink, Route } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/moviesApi';
+import Loader from 'components/Loader';
 import styles from './MovieDetailsView.module.css';
 
 const Cast = lazy(() =>
@@ -14,7 +15,6 @@ export default function MovieDetailsView() {
     const routerState = useRef(null);
     const history = useHistory();
     const location = useLocation();
-    console.log('moviesdetails location', location);
     const { url, path } = useRouteMatch();
     const { movieId } = useParams();
     const [movie, setMovie] = useState(null);
@@ -27,9 +27,7 @@ export default function MovieDetailsView() {
         if (!routerState.current) {
             routerState.current = location.state;
         }
-    }, []);
-
-    console.log(routerState);
+    }, [location.state]);
     
     const onGoBack = () => {
         const url = routerState.current ? routerState.current.from : '/';
@@ -64,7 +62,7 @@ export default function MovieDetailsView() {
             </div>
             <hr />
 
-            <Suspense fallback={<h1>Loading...</h1>}>
+            <Suspense fallback={<Loader />}>
                 <Route path={`${path}/cast`}>
                     <Cast movieId={movieId} />
                 </Route>
