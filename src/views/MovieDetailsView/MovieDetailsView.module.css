@@ -38,3 +38,18 @@
   font-size: 14px;
   padding-bottom: 5px;
 }
+
+.btn {
+  margin-left: 20px;
+  max-width: 100px;
+  color: #fff;
+  background-color: #bf2458;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #2a363b;
+}

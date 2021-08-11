@@ -3,6 +3,7 @@ import { useParams, useRouteMatch, useLocation, useHistory } from 'react-router'
 import { NavLink, Route } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/moviesApi';
 import Loader from 'components/Loader';
+import defaultIMG from '../../images/defaultIMG.jpeg';
 import styles from './MovieDetailsView.module.css';
 
 const Cast = lazy(() =>
@@ -36,9 +37,15 @@ export default function MovieDetailsView() {
 
     return (
         <>
-            <button type="button" onClick={onGoBack}>&#8592; Go Back</button>
+            <button className={styles.btn} type="button" onClick={onGoBack}>&#8592; Go Back</button>
             {movie && <div className={styles.movieContainer}>
-                <img className={styles.movieImg} src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt={movie.title} />
+                {movie.poster_path ? (
+                    <img
+                        className={styles.movieImg}
+                        src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+                        alt={movie.title}
+                    />
+                ) : (<img className={styles.movieImg} src={defaultIMG} alt="" width="300px"/>)}
                 <div className={styles.movieInfo}>
                     <h2 className={styles.movieTitle}>{movie.title}</h2>
                     <p className={styles.movieText}>User Score: {movie.vote_average * 10}&#x25;</p>
