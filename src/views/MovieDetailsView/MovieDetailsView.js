@@ -5,10 +5,9 @@ import { fetchMovieDetails } from 'services/moviesApi';
 import styles from './MovieDetailsView.module.css';
 
 const Cast = lazy(() =>
-  import('../../components/Cast/Cast.js' /* webpackChunkName: "cast-subview" */),
+    import('components/Cast/Cast' /* webpackChunkName: "cast-subview" */),
 );
-const Reviews = lazy(() =>
-  import('../../components/Reviews/Reviews.js' /* webpackChunkName: "reviews-subview" */),
+const Reviews = lazy(() => import('components/Reviews/Reviews' /* webpackChunkName: "reviews-subview" */),
 );
 
 export default function MovieDetailsView() {
@@ -48,7 +47,7 @@ export default function MovieDetailsView() {
             <hr />
 
             <Suspense fallback={<h1>Loading...</h1>}>
-                <Route path={`${path}cast`}>
+                <Route path={`${path}/cast`}>
                     <Cast movieId={movieId} />
                 </Route>
 
