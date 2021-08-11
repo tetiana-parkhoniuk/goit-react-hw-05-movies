@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { fetchTrendingMovies } from 'services/moviesApi';
+import { fetchTrendingMovies } from '../../services/moviesApi';
 import styles from './HomeView.module.css';
 
 export default function HomeView() {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { fetchMovies } from 'services/moviesApi';
-import Searchbar from "components/SearchBar/SearchBar";
-import MoviesList from 'components/MoviesList';
+import { fetchMovies } from '../../services/moviesApi';
+import Searchbar from '../../components/SearchBar/SearchBar'
+import MoviesList from '../../components/MoviesList/MoviesList';
 
 export default function MoviesView() {
   const history = useHistory();

@@ -1,5 +1,0 @@
-{
-    "hooks": {
-        "pre-commmit": "npx lint staged"
-    }
-}

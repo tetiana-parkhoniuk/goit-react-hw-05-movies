@@ -1,15 +1,15 @@
 import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { useParams, useRouteMatch, useLocation, useHistory } from 'react-router';
 import { NavLink, Route } from 'react-router-dom';
-import { fetchMovieDetails } from 'services/moviesApi';
-import Loader from 'components/Loader';
+import { fetchMovieDetails } from '../../services/moviesApi';
+import Loader from '../../components/Loader/Loader';
 import defaultIMG from '../../images/defaultIMG.jpeg';
 import styles from './MovieDetailsView.module.css';
 
 const Cast = lazy(() =>
-    import('components/Cast/Cast' /* webpackChunkName: "cast-subview" */),
+    import('../../components/Cast/Cast.js' /* webpackChunkName: "cast-subview" */),
 );
-const Reviews = lazy(() => import('components/Reviews/Reviews' /* webpackChunkName: "reviews-subview" */),
+const Reviews = lazy(() => import('../../components/Reviews/Reviews.js' /* webpackChunkName: "reviews-subview" */),
 );
 
 export default function MovieDetailsView() {
