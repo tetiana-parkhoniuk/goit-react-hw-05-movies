@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { useParams, useRouteMatch, useLocation, useHistory } from 'react-router';
 import { NavLink, Route } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/moviesApi';
@@ -11,6 +11,7 @@ const Reviews = lazy(() => import('components/Reviews/Reviews' /* webpackChunkNa
 );
 
 export default function MovieDetailsView() {
+    const routerState = useRef(null);
     const history = useHistory();
     const location = useLocation();
     console.log('moviesdetails location', location);
@@ -21,13 +22,19 @@ export default function MovieDetailsView() {
     useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie);
     }, [movieId]);
+
+    useEffect(() => {
+        if (!routerState.current) {
+            routerState.current = location.state;
+        }
+    }, []);
+
+    console.log(routerState);
     
     const onGoBack = () => {
-        history.push(location?.state?.from ?? '/');
+        const url = routerState.current ? routerState.current.from : '/';
+        history.push(url);
     }
-
-    const fromLocationState = location.state.from;
-    console.log(fromLocationState);
 
     return (
         <>
@@ -48,10 +55,7 @@ export default function MovieDetailsView() {
                 <h3>Additional information</h3>
                 <ul>
                     <li className={styles.additionalLink}>
-                        <NavLink to={{
-                            pathname: `${url}/cast`,
-                            state: { fromLocationState },
-                        }}>Cast</NavLink>
+                        <NavLink to={`${url}/cast` }>Cast</NavLink>
                     </li>
                     <li className={styles.additionalLink}>
                         <NavLink to={`${url}/reviews`}>Reviews</NavLink>

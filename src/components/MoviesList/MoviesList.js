@@ -5,7 +5,6 @@ import styles from './MoviesList.module.css';
 export default function MoviesList({ movies }) {
   const { url } = useRouteMatch();
   const location = useLocation();
-  console.log(location);
   
   return (
     <ul className={styles.moviesList}>
